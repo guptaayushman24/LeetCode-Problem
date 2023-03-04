@@ -1,0 +1,20 @@
+class Solution {
+    public int maximumValue(String[] strs) {
+        
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (String str:strs){
+            try{
+                int num = Integer.parseInt(str);
+                list.add(num);
+            }
+            catch(NumberFormatException e){
+                int length = str.length();
+                list.add(length);
+            }
+        }
+        Collections.sort(list);
+        
+
+        return list.get(strs.length-1);
+    }
+}
