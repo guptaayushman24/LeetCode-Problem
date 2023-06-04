@@ -1,0 +1,45 @@
+class Solution {
+    public static boolean isValid(int[] weights, int n, int days, int max) {
+        int student = 1;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum = sum + weights[i];
+            if (sum > max) {
+                student++;
+                sum = weights[i];
+                if (student > days) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public int shipWithinDays(int[] weights, int days) {
+        int res = -1;
+        int maxi = weights[0];
+        for (int i = 0; i < weights.length; i++) {
+            if (weights[i] > maxi) {
+                maxi = weights[i];
+            }
+        }
+        
+        int sum = 0;
+        for (int i = 0; i < weights.length; i++) {
+            sum = sum + weights[i];
+        }
+
+        int start = maxi;
+        int end = sum;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (isValid(weights, weights.length, days, mid) == true) {
+                res = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return res;
+    }
+}
