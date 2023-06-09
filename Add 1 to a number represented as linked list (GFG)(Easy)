@@ -14,7 +14,8 @@ class Solution
     public static Node addOne(Node head) 
     { 
         Node new_head = reverse(head);
-        Node current = new_head,current_1=new_head,prev=null;
+       
+       Node current = new_head,current_1=new_head,prev=null;
         int carry=0;
         while(current!=null){
             int sum=0;
