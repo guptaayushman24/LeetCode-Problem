@@ -1,0 +1,32 @@
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int [] p_nums = new int[nums.length/2];
+        int [] n_nums = new int[nums.length/2];
+
+        int j=0;
+        int k=0;
+        for (int i=0;i<nums.length;i++){
+            if (nums[i]>0){
+                p_nums[j] = nums[i];
+                j++;
+            }
+            else{
+                n_nums[k] = nums[i];
+                k++;
+            }
+        
+        }
+        int z1=0;
+        int z2=0;
+        int z3=0;
+        while (z1<p_nums.length && z2<n_nums.length){
+            nums[z3] = p_nums[z1];
+            z1++;
+            z3++;
+            nums[z3] = n_nums[z2];
+            z2++;
+            z3++;
+        }
+        return nums;
+    }
+}
