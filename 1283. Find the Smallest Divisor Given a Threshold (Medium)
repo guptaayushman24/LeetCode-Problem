@@ -1,0 +1,34 @@
+class Solution {
+    public static int sum_divisor(int[] nums,int mid){
+        double sum=0;
+        for (int i=0;i<nums.length;i++){
+            sum = sum+Math.ceil((double)nums[i]/(double)mid);
+        }
+        return (int) sum;
+    }
+    public static int max_nums(int []nums){
+        int maxi = Integer.MIN_VALUE;
+        for (int i=0;i<nums.length;i++){
+            maxi = Math.max(maxi,nums[i]);
+        }
+        return maxi;
+    }
+    public int smallestDivisor(int[] nums, int threshold) {
+      
+        int l=0;
+        int h=max_nums(nums);
+        int ans = Integer.MAX_VALUE;
+        while (l<=h){
+            int mid = (l+h)/2;
+            if (sum_divisor(nums,mid)<=threshold){
+                ans = mid;
+        
+                h = mid-1;
+            }
+            else{
+                l = mid+1;
+            }
+        }
+        return ans;
+    }
+}
