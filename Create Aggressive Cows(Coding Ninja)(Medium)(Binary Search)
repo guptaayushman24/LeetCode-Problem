@@ -1,0 +1,36 @@
+import java.util.*;
+public class Solution {
+    public static  boolean canweplace(int [] stalls,int mid,int k){
+        int countcow=1;
+        int lastcow=stalls[0];
+        for (int i=1;i<stalls.length;i++){
+            if (stalls[i]-lastcow>=mid){
+                countcow++;
+                lastcow=stalls[i];
+            }
+        }
+        if (countcow>=k){
+            return true;
+        }
+        return false;
+    }
+    
+    public static int aggressiveCows(int []stalls, int k) {
+        
+        Arrays.sort(stalls);
+        int ans=-1;
+        int l=1;
+        int h=stalls[stalls.length-1]-stalls[0];
+        while (l<=h){
+            int mid  = (l+h)/2;
+            if (canweplace(stalls,mid,k)==true){
+                ans = mid;
+                l = mid+1;
+            }
+            else{
+                h=mid-1;
+            }
+        }
+        return ans;
+    }
+}
