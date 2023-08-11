@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static int max_ele(ArrayList<Integer> boards){
+        int maxi = Integer.MIN_VALUE;
+        for (int i=0;i<boards.size();i++){
+            maxi = Math.max(maxi,boards.get(i));
+        }
+        return maxi;
+    }
+     public static int sum_arr(ArrayList<Integer> boards){
+        int sum=0;
+        for (int i=0;i<boards.size();i++){
+            sum = sum+boards.get(i);
+        }
+     
+        return sum;
+    }
+    public static int partition(ArrayList<Integer> boards,int mid){
+        int size=1;
+        int hold=0;
+        for (int i=0;i<boards.size();i++){
+            if (hold+boards.get(i)<=mid){
+                hold+=boards.get(i);
+            }
+            else{
+                size++;
+                hold=boards.get(i);
+            }
+        }
+        return size;
+    }
+    public static int findLargestMinDistance(ArrayList<Integer> boards, int k)
+    {
+         // Finding the low and the high
+        int low = max_ele(boards);
+        int high = sum_arr(boards);
+        while (low<=high){
+            int mid = (low+high)/2;
+            if (partition(boards,mid)>k){
+                low = mid+1;
+            }
+            else{
+                high = mid-1;
+            }
+        }
+        return low;
+    }
+}
