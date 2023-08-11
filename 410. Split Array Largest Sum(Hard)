@@ -1,0 +1,48 @@
+class Solution {
+    public static int max_ele(int [] nums){
+        int maxi = Integer.MIN_VALUE;
+        for (int i=0;i<nums.length;i++){
+            maxi = Math.max(maxi,nums[i]);
+        }
+        return maxi;
+    }
+
+    public static int sum_arr(int [] nums){
+        int sum=0;
+        for (int i=0;i<nums.length;i++){
+            sum = sum+nums[i];
+        }
+        return sum;
+    }
+
+    public static int partition(int []nums,int mid){
+        int size=1;
+        int hold=0;
+        for (int i=0;i<nums.length;i++){
+            if (hold+nums[i]<=mid){
+                hold+=nums[i];
+            }
+            else{
+                size++;
+                hold=nums[i];
+            }
+        }
+        return size;
+    }
+    public int splitArray(int[] nums, int k) {
+        
+        // Finding the low and the high
+        int low = max_ele(nums);
+        int high = sum_arr(nums);
+        while (low<=high){
+            int mid = (low+high)/2;
+            if (partition(nums,mid)>k){
+                low = mid+1;
+            }
+            else{
+                high = mid-1;
+            }
+        }
+        return low;
+    }
+}
