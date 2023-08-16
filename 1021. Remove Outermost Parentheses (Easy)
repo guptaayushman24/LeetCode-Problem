@@ -1,0 +1,23 @@
+class Solution {
+    public String removeOuterParentheses(String s) {
+        StringBuilder str = new StringBuilder();
+        Stack<Character> parenthesis = new Stack<>();
+
+        for (int i=0;i<s.length();i++){
+            if (s.charAt(i)=='('){
+                if (parenthesis.size()>0){
+                    str.append(s.charAt(i));
+                }
+                parenthesis.push(s.charAt(i));
+            }
+            else{
+                parenthesis.pop();
+                if (parenthesis.size()>0){
+                    str.append(s.charAt(i));
+              
+                }
+            }
+        }
+        return str.toString();
+    }
+}
