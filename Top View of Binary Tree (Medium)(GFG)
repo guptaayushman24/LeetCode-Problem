@@ -1,0 +1,31 @@
+class Solution
+{
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    static ArrayList<Integer> topView(Node root)
+    {
+        ArrayList<Integer> right = new ArrayList<>();
+        ArrayList<Integer> left = new ArrayList<>();
+        ArrayList<Integer> final1 = new ArrayList<>();
+        
+        Node root_left = root;
+        Node root_right = root;
+        while(root_left!=null){
+            root_left = root_left.left;
+            left.add(root_left.data);
+        }
+        right.add(root_right.data);
+        while (root_right!=null){
+            root_right = root_right.right;
+            left.add(root_right.data);
+        }
+        
+        for (int i=left.size()-1;i>=0;i--){
+            final1.add(left.get(i));
+        }
+        for (int i=0;i<right.size();i++){
+            final1.add(right.get(i));
+        }
+        
+        return final1;
+        
