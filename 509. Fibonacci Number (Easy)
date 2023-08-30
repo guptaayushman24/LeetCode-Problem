@@ -1,0 +1,14 @@
+class Solution {
+    public static int fibaa(int m){
+        if (m==0){
+            return 0;
+        }
+        if (m==1){
+            return 1;
+        }
+        return fibaa(m-1)+fibaa(m-2);
+    }
+    public int fib(int n) {
+        return fibaa(n);
+    }
+}
