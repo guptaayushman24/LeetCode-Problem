@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Solution {
+    public static int mini_total_energy(int [] dp,int index, int[] heights) {
+        if (index <= 0) {
+            return 0;
+        }
+        if (dp[index]!=-1){
+            return dp[index];
+        }
+        int left = mini_total_energy(dp,index - 1, heights) + Math.abs(heights[index] - heights[index - 1]);
+        int right = Integer.MAX_VALUE;
+        if (index > 1) {
+            right = mini_total_energy(dp,index - 2, heights) + Math.abs(heights[index] - heights[index - 2]);
+        }
+        return dp[index] = Math.min(left, right);
+    }
+
+    public static int frogJump(int n, int heights[]) {
+     
+        int [] dp = new int[n+1];
+        Arrays.fill(dp,-1);
+        return mini_total_energy(dp,n - 1, heights);
+    }
+}
