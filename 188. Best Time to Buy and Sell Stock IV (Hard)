@@ -1,0 +1,33 @@
+class Solution {
+    public static int f(int index,int buy,int k,int[] prices,int n,int[][][] dp){
+        if (index==n){
+            return 0;
+        }
+        if (k==0){
+            return 0;
+        }
+        if (dp[index][buy][k]!=-1){
+            return dp[index][buy][k];
+        }
+        if (buy==1){
+            return dp[index][buy][k]=Math.max(-prices[index]+f(index+1,0,k,prices,n,dp),0+f(index+1,1,k,prices,n,dp));
+        }
+        else{
+            return dp[index][buy][k]=Math.max(prices[index]+f(index+1,1,k-1,prices,n,dp),0+f(index+1,0,k,prices,n,dp));
+        
+        }
+    }
+   
+    public int maxProfit(int k, int[] prices) {
+        int n = prices.length;
+        int [][][] dp = new int[n][2][k+1];
+        for (int i=0;i<n;i++){
+            for (int j=0;j<2;j++){
+                for (int l=0;l<k+1;l++){
+                    dp[i][j][l]=-1;
+                }
+            }
+        }
+        return f(0,1,k,prices,n,dp);
+    }
+}
