@@ -1,0 +1,26 @@
+public class Solution {
+    public static String f(int i, int j, String s1, String s2) {
+        if (i < 0 || j < 0) {
+            return "";
+        }
+
+        if (s1.charAt(i) == s2.charAt(j)) {
+            return f(i - 1, j - 1, s1, s2) + s1.charAt(i);
+        } else {
+            String left = f(i - 1, j, s1, s2);
+            String right = f(i, j - 1, s1, s2);
+           if (left.length()>right.length()){
+               return left;
+           }
+           else{
+               return right;
+         
+           }
+        }
+    }
+
+    public static String findLCS(int n, int m, String s1, String s2) {
+     
+        return f(n - 1, m - 1, s1, s2);
+    }
+}
