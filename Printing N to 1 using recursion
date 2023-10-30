@@ -1,0 +1,15 @@
+public class Solution
+{
+    public static int [] f(int [] nums,int i,int n ){
+        if (nums[nums.length-1]==1){
+            return nums;
+        }
+        nums[i] = n;
+        return f(nums,i+1,n-1);
+    }
+    public static int[] printNos(int x) {
+        int [] nums = new int [x];
+        return f(nums,0,x);
+        
+    }
+}
