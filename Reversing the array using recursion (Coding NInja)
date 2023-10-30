@@ -1,0 +1,15 @@
+public class Solution {
+      public static int [] f (int []nums,int i,int j){
+           if (i>=j){
+               return nums;
+           }
+           int temp=nums[i];
+           nums[i]=nums[j];
+           nums[j]=temp;
+            return f(nums,i+1,j-1);
+       }
+    public static int[] reverseArray(int n, int []nums) {
+         return f(nums, 0, nums.length - 1);
+     
+    }
+}
